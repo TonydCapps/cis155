@@ -47,4 +47,37 @@ p {
   font-size: 1rem;
   font-family: 'Courier New', monospace;
 }
+h1 {
+  margin-left: 10rem;
+  padding-top: 5rem;
+  padding-right: 7rem;
+}
+
+ul {
+  margin-left: -3rem;
+  padding-bottom: 4rem;
+}
+
+nav {
+  margin-top: 6rem;
+  padding-left: 8rem;
+}
+
+h2 {
+  border: 5px dotted magenta;
+  border-right: 10px double lime;
+  border-bottom: 3px dashed orange;
+  padding: 1rem;
+}
+
+section {
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  color: #ff6600;
+}
+
+li {
+  transform: rotate(-5deg);
+  font-style: italic;
+  font-size: 1.1rem;
+}
 
