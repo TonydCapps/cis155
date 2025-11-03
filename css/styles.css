@@ -204,7 +204,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     .main-nav ul {
         display: none;
         flex-direction: column;
-        background: #c53232a6;
+        background: #000000d3;
         position: absolute;
         top: 3.5em;
         left: 0;
