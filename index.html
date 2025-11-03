@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Character encoding and viewport settings for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Ideas</title>
-</head>
-<body>
+    <title>Homepage</title> 
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head> 
+<body> 
+<!-- navigation bar for smaller screens -->
+    <nav class="main-nav"> 
+        <button class="nav-toggle" id="nav-toggle" aria lable="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+<!-- navigation menu for larger screens -->
+        <ul id="nav-menu"> 
+            <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li> 
+            <li><a href="ideas.html"><i class="fas fa-lightbulb"></i>Ideas</a></li>
+            <li><a href="projects.html"><i class="fas fa-tools"></i> Projects</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i>About Me</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="ch2activity/ch2.html">ch2</a></li>
+            <li><a href="ch3activity/ch3.html">ch3</a></li>
+            <li><a href="ch4activity/ch4.html">ch4</a></li>
+            <li><a href="ch7activity/Ch%207%20Exercise%20Code/chatgpt-1/index.html">Ch7</a></li>
+            <li><a href="ugly.html">Ugly Page</a></li>
+    </ul></nav>
     <main>
-        <section>
-            <header>
-            <!--main heading -->
-                <h1 id="main-heading">This is my first web page - It's going to be about random ideas</h1>
-            <!--<p> element this is the first paragraph-->
-                <p>I'm not sure how it's going to look in the end, but I'm sure it's going to be cool.</p>
-            </header>
-            <!--the navagtion links-->
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="ch2activity/ch2.html">ch2</a></li>
-                    <li><a href="ch3activity/ch3.html">ch3</a></li>
-                    <li><a href="ch4activity/ch4.html">ch4</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="ugly.html">Ugly Page</a></li>
-                </ul>
-            </nav>
-            <h2>Business Ideas</h2>
-            <p>Here will be ideas for a business or businesses.</p>
-            <!-- List of business ideas -->
-            <ul>
-                <li class="highlight">Penetration Testing (Pipe Dream)</li>
-                <li>Cyber Security Emergency: On-call In-person</li>
-                <li>Local Personal Cyber Home Security All-in-one</li>
+<!-- Main content overlay for better readability -->
+        <div class="overlay">
+<!-- Dark Mode Toggle Button -->
+            <button id="toggle-mode">Toggle Dark Mode</button>
+<!-- Main Title -->
+            <h1 id="main-title">Welcome to My Random Ideas Page</h1>
+               <p>This website serves as a digital notebook for my entrepreneurial and cybersecurity ideas. It's a space where creativity meets strategy, and raw concepts are refined into potential ventures.</p>
+            <h2 class="idea-heading">Business Ideas</h2>
+               <ul class="idea-list">
+                <li>
+                    <strong>Penetration Testing Services</strong> – Helping small businesses identify and fix their digital vulnerabilities using industry-standard tools and ethical hacking practices. Ideal for startups with limited security budgets.
+                </li>
+                <li>
+                    <strong>On-call Cybersecurity Emergency Response</strong> – A 24/7 service that dispatches trained cybersecurity professionals for immediate help after a data breach or suspicious activity. Think of it as a tech version of emergency services.
+                </li>
+                <li>
+                    <strong>Home Cybersecurity Consulting</strong> – Personal consulting for families and individuals who want to secure their smart homes, devices, and online identities. Includes router configuration, privacy settings, and best practices education.
+                </li>
             </ul>
-            <!--link to external website-->
-            <p>Check out <a href="https://www.nist.gov/cyberframework" target="_blank">this cybersecurity website</a> for inspiration!</p>
-            <!--first image-->
-            <img src="images/images.jpeg" alt="hacked">
-        </section>
+    
+            <section>
+                <h2>Why Cybersecurity?</h2>
+            <p id="why-cybersecurity">In today's world, cybersecurity is more than just a buzzword—it's a critical part of our daily lives. From protecting personal data to securing business operations, understanding the basics of cybersecurity is essential for everyone.</p>
+                <p>Technology is everywhere, and so are digital threats. I believe that understanding cybersecurity isn't just for experts—it's a necessity for anyone living in the digital age. My goal is to make security knowledge more accessible and useful for everyone.</p>
+            <img src="images/cybersecurity.jpg" alt="Cybersecurity concepts" class="scalable-image">
+            </section>
+
+            <p><a href="ideas.html">Visit The Ideas Page</a> or <a href="#why-cybersecurity">jump to Why Cybersecurity section</a></p>
+        </div>
     </main>
+<!-- Footer with copyright -->
     <footer>
-        <!-- My Footer section -->
-        <p>Created by Tony Capps &copy; 2025</p>
+        <p>&copy; 2025 Tony Capps</p>
     </footer>
+<!-- JavaScript for Dark Mode and Menu Toggle -->
+<script>
+    //Dark Mode
+    const toggleBtn = document.getElementById("toggle-mode");
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+    });
+
+    //Menu Toggle
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+    });
+</script>
 </body>
 </html>

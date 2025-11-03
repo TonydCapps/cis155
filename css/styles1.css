@@ -1,0 +1,84 @@
+/* Type selector */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d0d0d; 
+  color: #e0e0e0; 
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+/* Class selector */
+.highlight {
+  color: #00ffcc;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Relational selector */
+nav a {
+  color: #66ff66; 
+  text-decoration: none;
+  font-style: italic;
+  margin-right: 1rem;
+}
+
+nav a:hover {
+  color: #ff3399;
+}
+
+/* ID selector */
+#main-heading {
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0.1rem 0.1rem #003333;
+}
+/* Element selector */
+h2 {
+  font-size: 1.8rem;
+  color: #ff3399; 
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-shadow: 0.1rem 0.1rem #330033;
+  margin-top: 2rem;
+}
+
+/* Font styling */
+p {
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+}
+h1 {
+  margin-left: 10rem;
+  padding-top: 5rem;
+  padding-right: 7rem;
+}
+
+/*
+ul {
+  margin-left: -3rem;
+  padding-bottom: 4rem;
+}
+
+nav {
+  margin-top: 6rem;
+  padding-left: 8rem;
+}
+
+h2 {
+  border: 5px dotted magenta;
+  border-right: 10px double lime;
+  border-bottom: 3px dashed orange;
+  padding: 1rem;
+}
+
+section {
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  color: #ff6600;
+}
+
+li {
+  transform: rotate(-5deg);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+*/
