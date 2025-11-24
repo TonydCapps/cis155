@@ -11,15 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
-
-
 </head>
 <body> 
 <!-- navigation bar for smaller screens -->
     <nav class="navbar">
   <div class="logo">Tony<span class="glow">Capps</span></div>
   <button class="nav-toggle" aria-label="Toggle navigation">
-
   </button>
   <ul class="nav-links">
     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -27,7 +24,6 @@
      <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>  
     <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
     <li><a href="projects.html"><i class="fa-solid fa-terminal"></i> Projects</a></li>
-
   </ul>
 </nav>
     <main>
@@ -62,15 +58,14 @@
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
-                <span class="title">~/portfolio/terminal</span>
+                <span class="title">~cli</span>
             </div>
                  <div class="terminal-body">
-        <p><span class="prompt">guest@tony:~$</span> Welcome to my cyber lab!</p>
+        <p><span class="prompt">guest@tony:~$</span> Welcome to my page!</p>
         <p><span class="prompt">guest@tony:~$</span> Type <strong>help</strong> to explore.</p>
-                <div id="terminal-output"></div>
-             <input type="text" id="terminal-input" placeholder="Enter command..." autofocus />
+                <div id="cli-output"></div>
+             <input type="text" id="cli-input" placeholder="Enter command..." autofocus />
                 </div>
-
 <!--scalable image-->
                 <img src="images/cybersecurity.jpg" alt="Cybersecurity concepts" class="scalable-image">
             </section>
@@ -79,9 +74,9 @@
         </div>
     </main>
 <!-- Footer with copyright -->
-    <footer>
-        <p>&copy; 2025 Tony Capps</p>
-    </footer>
+<footer>
+  <p>&copy; 2025 Tony’s Cyber Lab | Built with 💻 + ⚡</p>
+</footer>
 <!-- JavaScript for Dark Mode and Menu Toggle This is just something fun -->
 <script>
     //Dark Mode
@@ -91,11 +86,11 @@
     });
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-
     navToggle.addEventListener('click', () => {
       navToggle.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
 </script>
+<script src="js/cli.js"></script>
 </body>
 </html>

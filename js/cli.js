@@ -1,5 +1,5 @@
-const input = document.getElementById("terminal-input");
-const output = document.getElementById("terminal-output");
+const input = document.getElementById("cli-input");
+const output = document.getElementById("cli-output");
 
 input.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
@@ -14,18 +14,18 @@ input.addEventListener("keydown", function(event) {
         response = "I'm Tony — cybersecurity student & creative coder.";
         break;
       case "projects":
-        response = "Check out my portfolio section for featured work.";
+        response = "Currently Im working on an all in one app for the avg everyday user. Check out my other projects, links at the top.";
         break;
       case "contact":
-        response = "Reach me via email or LinkedIn.";
+        response = "Reach me via email or LinkedIn(comming soon)";
         break;
       default:
         response = `Command not found: ${command}`;
     }
 
     const newLine = document.createElement("p");
-    newLine.innerHTML = `<span class="prompt">guest@tony:~$</span> ${response}`;
-    output.appendChild(newLine);
+newLine.innerHTML = `<span class="prompt">guest@tony:~$</span> ${command}<br>${response}`;
+output.appendChild(newLine);
 
     input.value = "";
   }

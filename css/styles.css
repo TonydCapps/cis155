@@ -73,7 +73,7 @@ body {
 }
 
 .nav-links li a:hover {
-  color: #00ff99;
+  color: #1dfc3a;
   text-shadow: 0 0 8px #00ff99, 0 0 15px #00ff99;
 }
 
@@ -127,7 +127,7 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
-  color: #e0e0e0;
+  color: #79ec4c;
 }
 
 #projects h1 {
@@ -144,7 +144,7 @@ body {
 }
 
 .project-card {
-  background: #111;
+  background: #1e3c72;
   border: 1px solid #00ff99;
   border-radius: 8px;
   padding: 1.5rem;
@@ -242,16 +242,38 @@ footer {
 /*LIGHT MODE*/
 body.light-mode {
   background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-  color: #222;
+  color: #333333;
 }
 
 body.light-mode .overlay {
   background-color: #ffffffd9;
-  color: #222;
+  color: #24996a;
   box-shadow: 0 0 10px #0000001a;
 }
+body.light-mode a {
+  color: #006699; 
+}
+body.light-mode a:hover {
+  color: #004466;
+}
 
-body.light-mode footer { color: #444; }
+body.light-mode footer { color: #444; 
+}
+body.light-mode {
+  background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+  color: #00ff99;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
+  color: #00ff99;
+}
+
+.about-flex > div {
+  background: #141e30d9;
+  color: #e0f7fa;
+}
 
 /*TOGGLE BUTTON*/
 #toggle-mode {

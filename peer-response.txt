@@ -13,19 +13,12 @@ Break up your content more. Some pages are just long scrolls with no headers or 
 
 Keep your styling consistent. The homepage and About Me page feel polished, but the Contact and Ugly pages drop that. Even a shared footer or font would help tie it together.
 
-Bonus Notes (I really liked!)
-
-The Ugly Page made me laugh. It’s giving “I did this on purpose” energy and I’m here for it.
-
-Your Emergency Cyber Response idea is actually solid. You could build that out into a full-service site if you wanted.
-
-You say you don’t know where it’s going, but honestly, that’s what makes it work. It’s exploratory, and it feels real.
-
-Overall, you’ve built something that feels like a working journal. Just tighten up the nav and layout and you’re good. Nice work.
+edits:
+I added the navbar to everypage so going from page to page works perfect.
+I added <h2> and <h3> headings to sections while using some font awsome icons.
+I also applied the same overlay container and footer to all pages.
 
 2) Hey Tony,
-
-I really like how your website is laid out, the navigation bar is easy to access and use and the toggle dark mode feature is really cool! If there's anything I would change though it's:
 
 1. The text for the navigation bar and any links in dark mode is really hard to read, the dark blue of the link text over the black is a very harsh color contrast, I would try to see if you can lighten the link text if at all possible, on the bright side, in light mode the text is very easy to read!
 
@@ -33,4 +26,7 @@ I really like how your website is laid out, the navigation bar is easy to access
 
 3. I would add some more content to your contact info page, if that's not possible, see if you can make it in the same kind of layout you made the Projects and Ideas pages, it would be feel more consistent with the rest of the site!
 
-Overall though, good work!
+edits:
+I adjusted the link colors and also made it so the nav bar doesnt change only the page. trying to find a good color for the font when in light mode.
+I changed my contact page to a grid layout, still trying to figure out what else to add to it.
+I also removed all the chapter links to clean it up.
