@@ -6,20 +6,27 @@
         <title>About</title> 
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+
     </head> 
     <body> 
-    <nav class="main-nav">
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-    <ul id="nav-menu">
-                    <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>                    
-                    <li><a href="ideas.html"><i class="fas fa-lightbulb"></i>Ideas</a></li>
-                    <li><a href="projects.html"><i class="fas fa-tools"></i> Projects</a></li>
-                    <li><a href="about.html"><i class="fas fa-user"></i>About Me</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-    </ul></nav>
-   
+<nav class="navbar">
+  <div class="logo">Tony<span class="glow">Capps</span></div>
+  <button class="nav-toggle" aria-label="Toggle navigation">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> Ideas</a></li>
+     <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>  
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-terminal"></i> Projects</a></li>
+  </ul>
+</nav>
     <main>
     <div class="overlay">
         <button id="toggle-mode">Toggle Dark Mode</button>
@@ -28,26 +35,28 @@
 <!--scalable image-->
          <img src="images/me.jpg" alt="Tony Capps Profile" class="profile-pic" />
     <div>
-    <p>Hi! I'm Tony Capps, a cybersecurity enthusiast and aspiring ethical hacker. I started this site to share ideas, build helpful tools, and raise awareness about how everyone—from individuals to businesses—can protect themselves online.</p>
+    <p>Hi! I'm Tony Capps, a cybersecurity enthusiast. I started this site to share ideas, build helpful tools, and raise awareness about how everyone from individuals to businesses can protect themselves online.</p>
     <p>When I'm not working on security scripts or websites, I enjoy tech reviews, gaming, and learning about open-source intelligence tools. I believe in teaching by doing, and this website is one of the ways I'm putting that belief into practice.</p>
         </div>
     </div>
 </div>
-
 </main>
 <footer>
     <p>&copy; 2025 Tony Capps</p>
 </footer>
 <script>
+    //Dark Mode
     const toggleBtn = document.getElementById("toggle-mode");
     toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
+        document.body.classList.toggle("light-mode");
     });
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("open");
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
     });
-</script> 
+</script>
 </body> 
 </html> 

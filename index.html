@@ -8,21 +8,28 @@
 <!-- Link to external CSS and Font Awesome for icons -->
     <link rel="stylesheet" href="css/styles.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+
+
 </head>
 <body> 
 <!-- navigation bar for smaller screens -->
-    <nav class="main-nav"> 
-        <button type="button" class="nav-toggle" onclick="navToggle" id="nav-toggle" aria-lable="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
-<!-- navigation menu for larger screens -->
-        <ul id="nav-menu"> 
-            <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li> 
-            <li><a href="ideas.html"><i class="fas fa-lightbulb"></i>Ideas</a></li>
-            <li><a href="projects.html"><i class="fas fa-tools"></i> Projects</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i>About Me</a></li>
-            <li><a href="contact.html">Contact</a></li>
-    </ul></nav>
+    <nav class="navbar">
+  <div class="logo">Tony<span class="glow">Capps</span></div>
+  <button class="nav-toggle" aria-label="Toggle navigation">
+
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> Ideas</a></li>
+     <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>  
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-terminal"></i> Projects</a></li>
+
+  </ul>
+</nav>
     <main>
 <!-- Main content overlay for better readability -->
         <div class="overlay">
@@ -49,6 +56,21 @@
                 <h2>Why Cybersecurity?</h2>
             <p id="why-cybersecurity">In today's world, cybersecurity is more than just a buzzword—it's a critical part of our daily lives. From protecting personal data to securing business operations, understanding the basics of cybersecurity is essential for everyone.</p>
                 <p>Technology is everywhere, and so are digital threats. I believe that understanding cybersecurity isn't just for experts—it's a necessity for anyone living in the digital age. My goal is to make security knowledge more accessible and useful for everyone.</p>
+             </section>
+             <section class="terminal">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">~/portfolio/terminal</span>
+            </div>
+                 <div class="terminal-body">
+        <p><span class="prompt">guest@tony:~$</span> Welcome to my cyber lab!</p>
+        <p><span class="prompt">guest@tony:~$</span> Type <strong>help</strong> to explore.</p>
+                <div id="terminal-output"></div>
+             <input type="text" id="terminal-input" placeholder="Enter command..." autofocus />
+                </div>
+
 <!--scalable image-->
                 <img src="images/cybersecurity.jpg" alt="Cybersecurity concepts" class="scalable-image">
             </section>
@@ -67,12 +89,12 @@
     toggleBtn.addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
     });
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    //Menu Toggle
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("open");
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
     });
 </script>
 </body>

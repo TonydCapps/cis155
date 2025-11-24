@@ -1,0 +1,36 @@
+1) Hey Tony, I went through your site, and it’s got a lot of personality. You’re clearly thinking through your ideas and building something that reflects your own voice. Here’s my full review.
+
+What I Appreciate:
+
+Your light/dark mode toggle is a nice touch. It shows you’re thinking about usability and accessibility, which is something a lot of people skip.
+I like that you’re keeping everything in one place. It’s organized chaos, and I respect that. I’m doing the same thing with my own Area2-155, so I get it.
+Your tone is consistent across the site. Whether you’re pitching a service or just talking through ideas, it feels like you. Not like you’re trying to sound like someone else.
+Suggestions for Improvement
+
+You need navigation on every page. Once someone clicks away from the homepage, there’s no way back unless they hit the browser button. Even just a “Back to Home” link would help.
+
+Break up your content more. Some pages are just long scrolls with no headers or spacing. Use <h2> tags or even icons to help guide the reader through it.
+
+Keep your styling consistent. The homepage and About Me page feel polished, but the Contact and Ugly pages drop that. Even a shared footer or font would help tie it together.
+
+Bonus Notes (I really liked!)
+
+The Ugly Page made me laugh. It’s giving “I did this on purpose” energy and I’m here for it.
+
+Your Emergency Cyber Response idea is actually solid. You could build that out into a full-service site if you wanted.
+
+You say you don’t know where it’s going, but honestly, that’s what makes it work. It’s exploratory, and it feels real.
+
+Overall, you’ve built something that feels like a working journal. Just tighten up the nav and layout and you’re good. Nice work.
+
+2) Hey Tony,
+
+I really like how your website is laid out, the navigation bar is easy to access and use and the toggle dark mode feature is really cool! If there's anything I would change though it's:
+
+1. The text for the navigation bar and any links in dark mode is really hard to read, the dark blue of the link text over the black is a very harsh color contrast, I would try to see if you can lighten the link text if at all possible, on the bright side, in light mode the text is very easy to read!
+
+2. I would move your chapter work like activity pages and the ugly page out of your navigation bar since we're past those points, but that's just a personal preference.
+
+3. I would add some more content to your contact info page, if that's not possible, see if you can make it in the same kind of layout you made the Projects and Ideas pages, it would be feel more consistent with the rest of the site!
+
+Overall though, good work!

@@ -6,32 +6,44 @@
         <title>Contact</title> 
         <link rel="stylesheet" href="css/styles.css"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+
     </head> 
     <body> 
-    <nav class="main-nav">
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-    <ul id="nav-menu">
-            <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>          
-            <li><a href="ideas.html"><i class="fas fa-lightbulb"></i>Ideas</a></li>
-            <li><a href="projects.html"><i class="fas fa-tools"></i> Projects</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i>About Me</a></li>
-            <li><a href="contact.html">Contact</a></li>  
-            <li><a href="ch2activity/ch2.html">ch2</a></li>
-            <li><a href="ch3activity/ch3.html">ch3</a></li>
-            <li><a href="ch4activity/ch4.html">ch4</a></li>
-            <li><a href="ch7activity/Ch%207%20Exercise%20Code/chatgpt-1/index.html">Ch7</a></li>
-            <li><a href= "ugly.html" target="_blank">Ugly Page</a></li>
-    </ul></nav>
-    <main>
-    <div class="overlay">
+  <nav class="navbar">
+  <div class="logo">Tony<span class="glow">Capps</span></div>
+  <button class="nav-toggle" aria-label="Toggle navigation">
+  </button>
+  <ul class="nav-links">
+     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="ideas.html"><i class="fas fa-lightbulb"></i> Ideas</a></li>
+     <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>  
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-terminal"></i> Projects</a></li>
+  </ul>
+</nav>
+    <main> 
+        <div class="overlay">
         <button id="toggle-mode">Toggle Dark Mode</button>
         <h1 id="main-title">Contact Information</h1>
         <p>Tony Capps
-        <br>Email: <a href="mailto:tonycapps@student.olympic.edu">Email Me</a>
-        <br>Phone: <a href="tel:+13606217955   ">+1 (360)621-7955</a>
         </p>
+        <section id="contact" class="grid-layout">
+  <div class="grid-item">
+    <h3><i class="fa-solid fa-envelope"></i> Email</h3>
+    <p>tonycapps@student.olympic.edu</p>
+  </div>
+  <div class="grid-item">
+    <h3><i class="fa-brands fa-linkedin"></i> LinkedIn</h3>
+    <p><a href="UPDATING">COMMING SOON</a></p>
+  </div>
+  <div class="grid-item">
+    <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+    <p>(360)621-7955</p>
+  </div>
+</section>
         <p><a href="index.html">Back to Homepage</a></p>
     </div>
 </main>
@@ -39,15 +51,18 @@
     <p>&copy; 2025 Tony Capps</p>
 </footer>
 <script>
+    //Dark Mode
     const toggleBtn = document.getElementById("toggle-mode");
     toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
+        document.body.classList.toggle("light-mode");
     });
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("open");
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
     });
-</script> 
+</script>
 </body> 
 </html>
