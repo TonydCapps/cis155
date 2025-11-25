@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Strength Checker</title>
+  <style>
+    :root {
+      --neon-green: #39ff14;
+      --neon-pink: #ff00ff;
+      --dark-bg: #0a0a0a;
+      --panel-bg: #111;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--dark-bg);
+      color: var(--neon-green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h2 {
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px var(--neon-pink);
+    }
+
+    input {
+      padding: 12px;
+      width: 320px;
+      background: var(--panel-bg);
+      border: 2px solid var(--neon-green);
+      border-radius: 5px;
+      color: var(--neon-green);
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 0 10px var(--neon-green);
+    }
+
+    input:focus {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 15px var(--neon-pink);
+    }
+
+    .strength-wrapper {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .strength-text, .crack-time {
+      font-weight: bold;
+      text-shadow: 0 0 8px var(--neon-green);
+      margin-top: 8px;
+    }
+
+    .bar {
+      height: 12px;
+      width: 320px;
+      background: #222;
+      margin-top: 8px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #000 inset;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .weak { background: red; box-shadow: 0 0 15px red; }
+    .medium { background: orange; box-shadow: 0 0 15px orange; }
+    .strong { background: var(--neon-green); box-shadow: 0 0 20px var(--neon-green); }
+  </style>
+</head>
+<body>
+  <h2>🔒 Password Strength Checker</h2>
+  <input type="password" id="password" placeholder="Type your password...">
+  <div class="strength-wrapper">
+    <div class="strength-text" id="strength">Strength: </div>
+    <div class="bar"><div class="bar-fill"></div></div>
+    <div class="crack-time" id="crackTime">Estimated crack time: </div>
+  </div>
+
+  <script>
+    class PasswordStrengthChecker {
+      constructor(inputEl, textEl, barEl, crackEl) {
+        this.inputEl = inputEl;
+        this.textEl = textEl;
+        this.barEl = barEl;
+        this.crackEl = crackEl;
+        this.bindEvents();
+      }
+
+      bindEvents() {
+        this.inputEl.addEventListener('input', () => this.updateStrength());
+      }
+
+      calculateScore(val) {
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[a-z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        return score;
+      }
+
+      estimateCrackTime(val) {
+        let charset = 0;
+        if (/[a-z]/.test(val)) charset += 26;
+        if (/[A-Z]/.test(val)) charset += 26;
+        if (/[0-9]/.test(val)) charset += 10;
+        if (/[^A-Za-z0-9]/.test(val)) charset += 33; // approx symbols
+
+        if (charset === 0) return "N/A";
+
+        const entropy = val.length * Math.log2(charset);
+        const guesses = Math.pow(2, entropy);
+        const guessesPerSecond = 1e10; // 10 billion/sec
+        let seconds = guesses / guessesPerSecond;
+
+        // Convert to readable units
+        if (seconds < 60) return `${seconds.toFixed(2)} seconds`;
+        if (seconds < 3600) return `${(seconds/60).toFixed(2)} minutes`;
+        if (seconds < 86400) return `${(seconds/3600).toFixed(2)} hours`;
+        if (seconds < 31536000) return `${(seconds/86400).toFixed(2)} days`;
+        if (seconds < 3153600000) return `${(seconds/31536000).toFixed(2)} years`;
+        return `${(seconds/3153600000).toFixed(2)} centuries`;
+      }
+
+      updateStrength() {
+        const val = this.inputEl.value;
+        const score = this.calculateScore(val);
+        let strength = '';
+        let cssClass = '';
+        let width = (score / 5) * 100;
+
+        switch(score) {
+          case 0:
+          case 1: strength = 'Weak'; cssClass = 'weak'; break;
+          case 2:
+          case 3: strength = 'Medium'; cssClass = 'medium'; break;
+          case 4:
+          case 5: strength = 'Strong'; cssClass = 'strong'; break;
+        }
+
+        this.textEl.textContent = `Strength: ${strength}`;
+        this.barEl.style.width = width + '%';
+        this.barEl.className = 'bar-fill ' + cssClass;
+
+        this.crackEl.textContent = "Estimated crack time: " + this.estimateCrackTime(val);
+      }
+    }
+
+    // Initialize component
+    const checker = new PasswordStrengthChecker(
+      document.getElementById('password'),
+      document.getElementById('strength'),
+      document.querySelector('.bar-fill'),
+      document.getElementById('crackTime')
+    );
+  </script>
+</body>
+</html>
+
