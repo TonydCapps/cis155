@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Primary">
+      <a class="logo" href="index.html">Tony<span class="glow">Capps</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+          <ul class="nav-links" id="primary-menu">
+  <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+  <li><a href="../pages/ideas.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> Ideas</a></li>
+  <li><a href="../pages/about.html"><i class="fas fa-user" aria-hidden="true"></i> About Me</a></li>
+  <li><a href="../pages/contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a></li>
+  <li><a href="../pages/projects.html"><i class="fa-solid fa-terminal" aria-hidden="true"></i> Projects</a></li>
+</ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="overlay">
+      <button id="toggle-mode">Toggle Dark Mode</button>
+      <section id="projects">
+        <h1>My Projects</h1>
+        <p>This page showcases my technical projects...</p>
+
+        <div class="project-card">
+          <h2>Crypto Wallet Finder</h2>
+          <p>A PowerShell-based tool designed to locate cryptocurrency wallet files...</p>
+          <ul>
+            <li>Automated installer with custom icon</li>
+            <li>Compatibility tested across PowerShell 5 and 7</li>
+            <li>Log-driven debugging</li>
+            <li>Modular code</li>
+          </ul>
+          <img src="../images/walletfinder.jpg" alt="Screenshot of Wallet Finder program" class="wallet-finder">
+          <p><strong>Future Plans:</strong> Add status bars for each search.</p>
+        </div>
+
+        <div class="project-card">
+          <h2>Automation Scripts</h2>
+          <p>A collection of PowerShell scripts focused on troubleshooting...</p>
+          <ul>
+            <li>Handles version quirks</li>
+            <li>Error logs with debugging</li>
+            <li>Adaptable for personal and enterprise use</li>
+          </ul>
+          <p><strong>Future Plans:</strong> Expand into a full automation toolkit with GUI.</p>
+        </div>
+
+        <div class="project-card upcoming">
+          <h2>Upcoming Projects</h2>
+          <ul>
+            <li><strong>Password Strength Checker:</strong> Real-time web tool...</li>
+            <li><strong>Penetration Testing Toolkit:</strong> Beginner-friendly scripts...</li>
+            <li><strong>Cybersecurity Blog:</strong> Tutorials and case studies...</li>
+          </ul>
+        </div>
+      </section>
+      <p><a href="../index.html">Back to Homepage</a></p>
+    </div>
+  </main>
+
+  <footer><p>&copy; 2025 Tony</p></footer>
+<script src="../js/mode.js"></script>
+</body>
+</html>
