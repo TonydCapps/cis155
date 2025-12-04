@@ -2,32 +2,63 @@
   --font-body: 'JetBrains Mono', monospace;
   --font-heading: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
+
 /* BACKGROUNDS */
-body.home { background: url("../images/Cyber.png") no-repeat center center fixed; background-size: cover; }
-body.projects { background: url("../images/Digital.png") no-repeat center center fixed; background-size: cover; }
-body.ideas { background: url("../images/AI.png") no-repeat center center fixed; background-size: cover; }
-body.about { background: url("../images/Abst.png") no-repeat center center fixed; background-size: cover; }
-body.contact { background: url("../images/Vector.png") no-repeat center center fixed; background-size: cover; }
+body.home { 
+  background: url("../images/hacking.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+body.home.light-mode {
+  background: url("../images/Digital.png") no-repeat center center fixed; 
+  background-size: cover; 
+}
+
+body.projects { 
+  background: url("../images/iphoto.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+body.projects.light-mode {
+  background: url("../images/istock.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+
+body.ideas { 
+  background: url("../images/maybe.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+body.ideas.light-mode {
+  background: url("../images/AI.png") no-repeat center center fixed; 
+  background-size: cover; 
+}
+
+body.about { 
+  background: url("../images/rd.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+body.about.light-mode {
+  background: url("../images/or.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+
+body.contact { 
+  background: url("../images/warning.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
+body.contact.light-mode {
+  background: url("../images/ia.jpg") no-repeat center center fixed; 
+  background-size: cover; 
+}
 
 /* GLOBAL STYLES */
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #00ff99);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
   color: #f0f3f2;
   overflow-x: hidden;
 }
 
 h1, h2, h3 {
   font-family: var(--font-heading);
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 .overlay {
@@ -251,9 +282,8 @@ footer {
   text-shadow: 0 0 6px #00ff99;
 }
 
-/* LIGHT MODE */
+/* LIGHT MODE (no background override) */
 body.light-mode {
-  background: linear-gradient(to bottom, #f0f0f0, #ffffff);
   color: #333333;
 }
 body.light-mode .overlay {
@@ -264,9 +294,14 @@ body.light-mode .overlay {
 body.light-mode a { color: #006699; }
 body.light-mode a:hover { color: #004466; }
 body.light-mode h1,
-body.light-mode h2,
-body.light-mode h3 { color: #00ff99; }
-body.light-mode footer { color: #444; }
+body.light-mode h2
+body.light-mode h3 { 
+  color: #00ff99; 
+}
+
+body.light-mode footer { 
+  color: #444; 
+}
 
 /* TOGGLE BUTTON */
 #toggle-mode {
@@ -431,4 +466,3 @@ body.light-mode footer { color: #444; }
   white-space: nowrap;
   border: 0; padding: 0; margin: -1px;
 }
-
