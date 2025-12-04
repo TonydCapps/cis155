@@ -70,27 +70,7 @@
   <footer>
     <p>&copy; 2025 Tony</p>
   </footer>
-
-  <script src="js/cli.js"></script>
-  <script>
-  // Dark Mode toggle
-  const toggleBtn = document.getElementById("toggle-mode");
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
-    });
-  }
-
-  // Navigation toggle
-  const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = navToggle.classList.toggle('active');
-      navLinks.classList.toggle('open', isOpen);
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-  }
-  </script>
+    <script src="js/mode.js"></script>
+    <script src="js/cli.js"></script>
 </body>
 </html>
