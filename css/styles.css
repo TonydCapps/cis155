@@ -2,6 +2,12 @@
   --font-body: 'JetBrains Mono', monospace;
   --font-heading: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
+/* BACKGROUNDS */
+body.home { background: url("../images/Cyber.png") no-repeat center center fixed; background-size: cover; }
+body.projects { background: url("../images/Digital.png") no-repeat center center fixed; background-size: cover; }
+body.ideas { background: url("../images/AI.png") no-repeat center center fixed; background-size: cover; }
+body.about { background: url("../images/Abst.png") no-repeat center center fixed; background-size: cover; }
+body.contact { background: url("../images/Vector.png") no-repeat center center fixed; background-size: cover; }
 
 /* GLOBAL STYLES */
 body {
