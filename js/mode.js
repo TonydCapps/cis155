@@ -1,14 +1,13 @@
-// Dark Mode toggle
+// Dark/Light Mode toggle
 const toggleBtn = document.getElementById("toggle-mode");
 if (toggleBtn) {
   toggleBtn.addEventListener("click", () => {
     const isLight = document.body.classList.toggle("light-mode");
-    // Change button text based on mode
-    toggleBtn.textContent = isLight ? "Toggle Light Mode" : "Toggle Dark Mode";
+    toggleBtn.textContent = isLight ? "Light Mode" : "Dark Mode";
   });
 }
 
-// Navigation toggle
+// Navigation toggle for mobile
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (navToggle && navLinks) {
