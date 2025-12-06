@@ -588,7 +588,7 @@ body.contact.light-mode {
   align-items: start;
 }
 .why-copy .lead {
-  color: #e6ffe6;
+  color: #ff0000;
   font-size: 1.05rem;
   margin-bottom: 0.75rem;
 }
@@ -599,7 +599,7 @@ body.contact.light-mode {
 .why-copy ul,
 .why-copy ol {
   margin: 0.5rem 0 1rem 1rem;
-  color: #dfffe0;
+  color: #ff0000;
 }
 .quick-check li {
   margin-bottom: 0.5rem;
@@ -640,8 +640,170 @@ body.contact.light-mode {
 }
 .faq-item p {
   margin: 0.5rem 0 1rem;
-  color: #dfffe0;
+  color: #ff0000;
   line-height: 1.4;
+}
+/* FAQ */
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  color: #00ff99;                 
+  font-weight: 700;
+  list-style: none;
+  border-radius: 6px;
+  transition: color 200ms ease, text-shadow 200ms ease;
+}
+
+/* Question text with animated underline */
+.faq-question {
+  position: relative;
+  padding-bottom: 4px;
+  color: inherit;
+}
+.faq-question::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff99, #ff0099);
+  transition: width 220ms ease;
+}
+
+/* Small hint */
+.faq-hint {
+  font-weight: 600;
+  color: rgba(191, 238, 191, 0.95); 
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Chevron indicator using inline SVG mask */
+.faq-chevron {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  transform-origin: 50% 45%;
+  transition: transform 220ms ease, filter 200ms ease;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>') no-repeat center;
+  background-color: #00ff99;
+  filter: drop-shadow(0 0 6px rgba(0,255,153,0.25));
+}
+
+/* Hover and focus */
+.faq summary:hover,
+.faq summary:focus {
+  color: #1dfc3a; 
+  text-shadow: 0 0 8px rgba(0,255,153,0.12);
+}
+.faq summary:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0,255,153,0.08);
+  border-radius: 6px;
+}
+
+/* Expand underline on hover/focus/open */
+.faq summary:hover .faq-question::after,
+.faq summary:focus .faq-question::after,
+.faq[open] summary .faq-question::after {
+  width: 100%;
+}
+
+/* Rotate chevron and change colors when open */
+.faq[open] summary .faq-chevron {
+  transform: rotate(180deg);
+  background-color: #ff0099; 
+  filter: drop-shadow(0 0 10px rgba(255,0,153,0.18));
+}
+.faq[open] summary {
+  color: #ff0099; 
+}
+
+/* Dark mode */
+.why-cyber,
+body:not(.light-mode) .why-cyber {
+  color: #ff1403; 
+}
+body:not(.light-mode) .why-cyber h2,
+body:not(.light-mode) .why-cyber h3 {
+  color: #ff1403; 
+}
+body:not(.light-mode) .why-cyber .lead {
+  color: #ff1403;
+}
+body:not(.light-mode) .why-cyber ul,
+body:not(.light-mode) .why-cyber ol {
+  color: #ff1403;
+}
+body:not(.light-mode) .why-cyber a {
+  color: #1dfc3a;
+  text-shadow: 0 0 6px rgba(0,255,153,0.08);
+}
+body:not(.light-mode) .why-cyber .stat-value {
+  color: #ff0099; 
+}
+body:not(.light-mode) .why-cyber .stat-label {
+  color: #ff1403;
+}
+body:not(.light-mode) .why-cyber .faq summary {
+  color: #24fb6e;
+  text-decoration: underline;
+}
+
+/* Light mode overrides */
+body.light-mode .why-cyber {
+  color: #24fb6e; 
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-color: rgba(34,197,94,0.25);
+}
+body.light-mode .why-cyber h2,
+body.light-mode .why-cyber h3 {
+  color: #2ffcaa;
+}
+body.light-mode .why-cyber .lead {
+  color: #24fb6e;
+}
+body.light-mode .why-cyber ul,
+body.light-mode .why-cyber ol {
+  color: #24fb6e;
+}
+body.light-mode .why-cyber a {
+  color: #0a66c2; 
+  text-shadow: none;
+}
+body.light-mode .why-cyber .stat-value {
+  color: #c2185b; 
+}
+body.light-mode .why-cyber .stat-label {
+  color: #24fb6e;
+}
+body.light-mode .why-cyber .faq summary {
+  color: #24fb6e;
+}
+
+/* Transition for smooth color change when toggling theme */
+.why-cyber,
+.why-cyber h2,
+.why-cyber h3,
+.why-cyber p,
+.why-cyber ul,
+.why-cyber ol,
+.why-cyber a,
+.why-cyber .stat-value,
+.why-cyber .stat-label,
+.why-cyber .faq summary {
+  transition: color 260ms ease, background-color 260ms ease, border-color 260ms ease;
+}
+
+/* Hint for smaller screens*/
+@media (max-width: 520px) {
+  .faq-hint { display: none; }
 }
 
 /* Responsive */
