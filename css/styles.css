@@ -9,23 +9,23 @@
 
 /* BACKGROUNDS */
 body.home {
-  background: url("images/green.jpg") no-repeat center center fixed;
+  background: url("../images/green.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.projects {
-  background: url("images/desk.jpg") no-repeat center center fixed;
+  background: url("../images/desk.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.ideas {
-  background: url("images/AI.png") no-repeat center center fixed;
+  background: url("../images/AI.png") no-repeat center center fixed;
   background-size: cover;
 }
 body.about {
-  background: url("images/or.jpg") no-repeat center center fixed;
+  background: url("../images/or.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.contact {
-  background: url("images/ia.jpg") no-repeat center center fixed;
+  background: url("../images/ia.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -485,23 +485,23 @@ body.light-mode footer {
 
 /* LIGHT MODE BACKGROUNDS */
 body.home.light-mode {
-  background: url("images/red.jpg") no-repeat center center fixed;
+  background: url("../images/red.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.projects.light-mode {
-  background: url("images/istock.jpg") no-repeat center center fixed;
+  background: url("../images/istock.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.ideas.light-mode {
-  background: url("images/maybe.jpg") no-repeat center center fixed;
+  background: url("../images/maybe.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.about.light-mode {
-  background: url("images/rd.jpg") no-repeat center center fixed;
+  background: url("../images/rd.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.contact.light-mode {
-  background: url("images/warning.jpg") no-repeat center center fixed;
+  background: url("../images/warning.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
