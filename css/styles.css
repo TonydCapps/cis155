@@ -1,3 +1,7 @@
+@media (prefers-color-scheme: light) {
+  body { color: #333; }
+}
+/* FONTS */
 :root {
   --font-body: 'JetBrains Mono', monospace;
   --font-heading: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -5,7 +9,7 @@
 
 /* BACKGROUNDS */
 body.home {
-  background: url("cis155/images/green.jpg") no-repeat center center fixed;
+  background: url("images/green.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.projects {
