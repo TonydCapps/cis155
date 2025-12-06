@@ -5,23 +5,23 @@
 
 /* BACKGROUNDS */
 body.home {
-  background: url("/images/greren.jpg") no-repeat center center fixed;
+  background: url("images/green.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.projects {
-  background: url("/images/desk.jpg") no-repeat center center fixed;
+  background: url("images/desk.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.ideas {
-  background: url("/images/AI.png") no-repeat center center fixed;
+  background: url("images/AI.png") no-repeat center center fixed;
   background-size: cover;
 }
 body.about {
-  background: url("/images/or.jpg") no-repeat center center fixed;
+  background: url("images/or.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 body.contact {
-  background: url("/images/ia.jpg") no-repeat center center fixed;
+  background: url("images/ia.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -33,9 +33,7 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: var(--font-heading);
 }
 
@@ -57,7 +55,6 @@ h3 {
   padding: 8px 12px;
   z-index: 1002;
 }
-
 .skip-link:focus {
   top: 10px;
 }
@@ -70,7 +67,6 @@ h3 {
   padding: 1rem 2rem;
   border-bottom: 2px solid #00ff99;
 }
-
 .logo {
   font-size: 1.5rem;
   color: #00ff99;
@@ -78,19 +74,16 @@ h3 {
   letter-spacing: 2px;
   margin-left: 30px;
 }
-
 .logo .glow {
   color: #ff0099;
   text-shadow: 0 0 8px #ff0099, 0 0 15px #ff0099;
   padding-right: 80px;
 }
-
 .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
 }
-
 .nav-links li a {
   color: #00ff99;
   text-decoration: none;
@@ -98,13 +91,11 @@ h3 {
   position: relative;
   transition: color 0.3s ease;
 }
-
 .nav-links li a:hover,
 .nav-links li a:focus {
   color: #1dfc3a;
   text-shadow: 0 0 8px #00ff99, 0 0 15px #00ff99;
 }
-
 .nav-links li a::after {
   content: '';
   position: absolute;
@@ -115,12 +106,10 @@ h3 {
   background-color: #00ff99;
   transition: width 0.3s ease;
 }
-
 .nav-links li a:hover::after,
 .nav-links li a:focus::after {
   width: 100%;
 }
-
 .nav-links li a.active {
   color: #fff;
   text-shadow: 0 0 10px #00ff99;
@@ -138,7 +127,6 @@ h3 {
   cursor: pointer;
   z-index: 1001;
 }
-
 .nav-toggle .bar {
   height: 3px;
   width: 100%;
@@ -147,15 +135,12 @@ h3 {
   transition: all 0.3s ease;
   box-shadow: 0 0 8px #00ff99;
 }
-
 .nav-toggle.active .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-
 .nav-toggle.active .bar:nth-child(2) {
   opacity: 0;
 }
-
 .nav-toggle.active .bar:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
@@ -167,14 +152,12 @@ h3 {
   padding: 2rem;
   color: #79ec4c;
 }
-
 #projects h1 {
   text-align: center;
   font-size: 2.5rem;
   color: #ffffff;
   margin-bottom: 1rem;
 }
-
 .project-card {
   background: #1e3c72;
   border: 1px solid #00ff99;
@@ -183,20 +166,16 @@ h3 {
   margin-bottom: 2rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 15px #00ff99;
 }
-
 .project-card h2 {
   color: #00ff99;
 }
-
 .project-card.upcoming {
   border: 1px dashed #ff0099;
 }
-
 .project-card.upcoming h2 {
   color: #ff0099;
 }
@@ -212,7 +191,6 @@ h3 {
   border-radius: 18px;
   box-shadow: 0 4px 24px #00000040;
 }
-
 .about-flex>div {
   background: #141e30d9;
   padding: 1.5em 2em;
@@ -228,7 +206,6 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5em;
 }
-
 .grid-item {
   background-color: #1e3c72;
   padding: 1em;
@@ -246,12 +223,10 @@ h3 {
   box-shadow: 0 0 24px #00e5ff80, 0 2px 8px #00000026;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .profile-pic:hover {
   transform: scale(1.07) rotate(-2deg);
   box-shadow: 0 0 32px #00e5ffcc, 0 4px 16px #0000002e;
 }
-
 .scalable-image {
   max-width: 100%;
   height: auto;
@@ -260,7 +235,6 @@ h3 {
   border-radius: 8px;
   box-shadow: 0 0 10px #0000004d;
 }
-
 .wallet-finder {
   max-width: 70%;
   height: auto;
@@ -278,30 +252,25 @@ footer {
   text-shadow: 0 0 6px #00ff99;
 }
 
-/* LIGHT MODE (no background override) */
+/* LIGHT MODE */
 body.light-mode {
   color: #333333;
 }
-
 body.light-mode .overlay {
   color: #42f8af;
   box-shadow: 0 0 10px #0000001a;
 }
-
 body.light-mode a {
   color: #05a6f7;
 }
-
 body.light-mode a:hover {
   color: #3cfd76;
 }
-
 body.light-mode h1,
 body.light-mode h2,
 body.light-mode h3 {
   color: #2ffcaa;
 }
-
 body.light-mode footer {
   color: #f33737;
 }
@@ -318,7 +287,6 @@ body.light-mode footer {
   margin-bottom: 1em;
   float: right;
 }
-
 #toggle-mode:hover {
   background-color: #00acc1;
   color: #fff;
@@ -332,7 +300,6 @@ body.light-mode footer {
     top: 1.2em;
     left: 1.2em;
   }
-
   .nav-links {
     display: none;
     flex-direction: column;
@@ -357,7 +324,6 @@ body.light-mode footer {
 }
 
 @media (max-width: 480px) {
-
   .flex-projects,
   .about-flex,
   .intro-flex {
@@ -401,7 +367,6 @@ body.light-mode footer {
   color: #00ff99;
   box-shadow: 0 0 15px #00ff99;
 }
-
 .terminal-header {
   display: flex;
   align-items: center;
@@ -409,7 +374,6 @@ body.light-mode footer {
   padding: 0.5em;
   border-bottom: 1px solid #00ff99;
 }
-
 .terminal-header .dot {
   height: 12px;
   width: 12px;
@@ -417,33 +381,16 @@ body.light-mode footer {
   margin-right: 6px;
   display: inline-block;
 }
-
-.dot.red {
-  background: #ff5f56;
-}
-
-.dot.yellow {
-  background: #ffbd2e;
-}
-
-.dot.green {
-  background: #27c93f;
-}
-
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
 .terminal-header .title {
   margin-left: auto;
   color: #00ff99;
   font-size: 0.9rem;
 }
-
-.terminal-body {
-  padding: 1em;
-}
-
-.prompt {
-  color: #00ff99;
-}
-
+.terminal-body { padding: 1em; }
+.prompt { color: #00ff99; }
 #cli-input {
   width: 100%;
   background: transparent;
@@ -464,7 +411,6 @@ body.light-mode footer {
   overflow: hidden;
   max-width: 100%;
 }
-
 .video-container iframe,
 .video-container video {
   position: absolute;
@@ -473,7 +419,6 @@ body.light-mode footer {
   width: 100%;
   height: 100%;
 }
-
 .video-caption {
   text-align: center;
   color: #b2ebf2;
@@ -481,7 +426,7 @@ body.light-mode footer {
   font-size: 0.95rem;
 }
 
-/* VISUALLY HIDDEN (for labels, headings) */
+/* VISUALLY HIDDEN */
 .visually-hidden {
   position: absolute !important;
   height: 1px;
@@ -500,13 +445,11 @@ body.light-mode footer {
   font-size: 1.1rem;
   padding: 1.5em;
 }
-
 /* Homepage image */
 .home .scalable-image {
   max-width: 90%;
   margin: 2em auto;
 }
-
 /* Center homepage link paragraph */
 .home .overlay p:last-of-type {
   text-align: center;
@@ -514,23 +457,14 @@ body.light-mode footer {
   font-size: 1.1rem;
 }
 
-/* Center "Back to Homepage" links on all pages */
+/* Center "Back to Homepage" links */
 .overlay p a[href="index.html"] {
   display: inline-block;
   text-align: center;
   margin: 2em auto;
   font-size: 1.1rem;
 }
-
-.overlay p {
-  text-align: center;
-}
-
-/* Center and glow effect for call-to-action links */
-.overlay p {
-  text-align: center;
-}
-
+.overlay p { text-align: center; }
 .overlay p a {
   display: inline-block;
   margin: 1.5em auto;
@@ -539,34 +473,32 @@ body.light-mode footer {
   text-decoration: none;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .overlay p a:hover,
 .overlay p a:focus {
   color: #1dfc3a;
   text-shadow: 0 0 8px #00ff99, 0 0 15px #00ff99;
 }
+
+/* LIGHT MODE BACKGROUNDS */
 body.home.light-mode {
-  background: url("/images/red.jpg") no-repeat center center fixed;
+  background: url("images/red.jpg") no-repeat center center fixed;
   background-size: cover;
 }
-
 body.projects.light-mode {
-  background: url("/images/istock.jpg") no-repeat center center fixed;
+  background: url("images/istock.jpg") no-repeat center center fixed;
   background-size: cover;
 }
-
 body.ideas.light-mode {
-  background: url("/images/maybe.jpg") no-repeat center center fixed;
+  background: url("images/maybe.jpg") no-repeat center center fixed;
   background-size: cover;
 }
-
 body.about.light-mode {
-  background: url("/images/rd.jpg") no-repeat center center fixed;
+  background: url("images/rd.jpg") no-repeat center center fixed;
   background-size: cover;
 }
-
 body.contact.light-mode {
-  background: url("/images/warning.jpg") no-repeat center center fixed;
+  background: url("images/warning.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
+/* END OF CSS FILE */
