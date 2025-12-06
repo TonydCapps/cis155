@@ -1,12 +1,12 @@
 const input = document.getElementById("cli-input");
 const output = document.getElementById("cli-output");
 
-input.addEventListener("keydown", function(event) {
+input.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     const command = input.value.trim();
     let response = "";
 
-    switch(command.toLowerCase()) {
+    switch (command.toLowerCase()) {
       case "help":
         response = "Available commands: about, projects, contact";
         break;
@@ -24,8 +24,8 @@ input.addEventListener("keydown", function(event) {
     }
 
     const newLine = document.createElement("p");
-newLine.innerHTML = `<span class="prompt">guest@tony:~$</span> ${command}<br>${response}`;
-output.appendChild(newLine);
+    newLine.innerHTML = `<span class="prompt">guest@tony:~$</span> ${command}<br>${response}`;
+    output.appendChild(newLine);
 
     input.value = "";
   }

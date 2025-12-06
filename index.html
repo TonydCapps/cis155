@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
+  <!-- Meta tags for character encoding and responsive design -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--title-->
+  <!-- Page title shown in browser tab -->
   <title>Homepage</title>
-  <!--stylesheets and fonts-->
+  <!-- External CSS and fonts -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,16 +16,20 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap"
     rel="stylesheet">
 </head>
-<!---->
 
 <body class="home">
+  <!-- Accessibility: Skip link lets screen readers jump to main content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Header with navigation bar -->
   <header>
     <nav class="navbar" role="navigation" aria-label="Primary">
+      <!-- Logo link -->
       <a class="logo" href="index.html">Tony<span class="glow">Capps</span></a>
+      <!-- Hamburger menu button for mobile -->
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-menu">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
+      <!-- Navigation links -->
       <ul class="nav-links" id="primary-menu">
         <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
         <li><a href="ideas.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> Ideas</a></li>
@@ -34,29 +39,32 @@
       </ul>
     </nav>
   </header>
-
+  <!-- Main content -->
   <main id="main-content">
     <div class="overlay">
+      <!-- Dark/Light mode toggle button -->
       <button id="toggle-mode">Toggle Dark Mode</button>
+      <!-- Page heading -->
       <h1 id="main-title">Welcome to My Random Ideas Page</h1>
       <p>This website serves as a digital notebook for my entrepreneurial and cybersecurity ideas...</p>
-
+      <!-- Business ideas list -->
       <h2 class="idea-heading">Business Ideas</h2>
       <ul class="idea-list">
         <li><strong>Penetration Testing Services</strong> Helping small businesses identify vulnerabilities...</li>
         <li><strong>On-call Cybersecurity Emergency Response</strong> A 24/7 service for immediate help...</li>
         <li><strong>Home Cybersecurity Consulting</strong> Personal consulting for families and individuals...</li>
       </ul>
-
+      <!-- Why Cybersecurity section -->
       <section aria-labelledby="why-heading">
         <h2 id="why-heading">Why Cybersecurity?</h2>
         <p id="why-cybersecurity">In today's world, cybersecurity is more than just a buzzword...</p>
         <p>Technology is everywhere, and so are digital threats...</p>
       </section>
-
+      <!-- Interactive terminal section -->
       <section class="terminal" aria-labelledby="terminal-title">
         <h2 id="terminal-title" class="visually-hidden">Interactive terminal</h2>
         <div class="terminal-header">
+          <!-- Colored dots mimic a terminal window -->
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
           <span class="title">~cli</span>
         </div>
@@ -64,20 +72,23 @@
           <p><span class="prompt">guest@tony:~$</span> Welcome to my page!</p>
           <p><span class="prompt">guest@tony:~$</span> Type <strong>help</strong> to explore.</p>
           <div id="cli-output" aria-live="polite"></div>
+          <!-- Hidden label for accessibility -->
           <label for="cli-input" class="visually-hidden">Terminal command input</label>
           <input type="text" id="cli-input" placeholder="Enter command..." autofocus />
         </div>
+        <!-- Decorative image -->
         <img src="images/cybersecurity.jpg" alt="Cybersecurity concepts illustration" class="scalable-image">
       </section>
-
+      <!-- Call-to-action links -->
       <p><a href="ideas.html">Visit The Ideas Page</a> or <a href="#why-cybersecurity">jump to Why Cybersecurity
           section</a></p>
     </div>
   </main>
-
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Tony</p>
   </footer>
+  <!-- Scripts -->
   <script src="js/mode.js"></script>
   <script src="js/cli.js"></script>
 </body>
