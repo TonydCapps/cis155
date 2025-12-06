@@ -1,7 +1,8 @@
-// Dark/Light Mode toggle
+// Dark/Light Mode toggle with persistence
 const toggleBtn = document.getElementById("toggle-mode");
 const body = document.body;
 
+// Update button text based on current mode
 function updateButtonText() {
   if (body.classList.contains("light-mode")) {
     toggleBtn.textContent = "Switch to Dark Mode";
@@ -10,23 +11,24 @@ function updateButtonText() {
   }
 }
 
+// Apply saved mode on page load
+const savedMode = localStorage.getItem("theme");
+if (savedMode === "light") {
+  body.classList.add("light-mode");
+}
 if (toggleBtn) {
-  // Sync text on load
   updateButtonText();
 
   toggleBtn.addEventListener("click", () => {
     body.classList.toggle("light-mode");
-    updateButtonText();
-  });
-}
 
-// Navigation toggle for mobile
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = navToggle.classList.toggle('active');
-    navLinks.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+    // Save current mode
+    if (body.classList.contains("light-mode")) {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
+
+    updateButtonText();
   });
 }
