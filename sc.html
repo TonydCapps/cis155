@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DL Barcode</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  
+  <script src="barcode/bcmath-min.js" type="text/javascript"></script>
+  <script src="barcode/pdf417-min.js" type="text/javascript"></script>
+
+  <script>
+      var currentBarcode = null;
+
+      function go() {
+          var hub3_code = "@\x0A\x1C\x0DANSI 6360050101DL00300203DLDAQ" + document.getElementsByName("DL")[0].value + "\x0ADAA" + document.getElementsByName("last")[0].value.toUpperCase() + "," + document.getElementsByName("first")[0].value.toUpperCase() + "," + document.getElementsByName("middle")[0].value.toUpperCase() + ",\x0ADAG" + document.getElementsByName("address")[0].value.toUpperCase() + "\x0ADAI" + document.getElementsByName("city")[0].value.toUpperCase() + "\x0ADAJSC\x0ADAK" + document.getElementsByName("zip")[0].value.toUpperCase() + "  \x0ADAR" + document.getElementsByName("class")[0].value.toUpperCase() + "   \x0ADAS" + document.getElementsByName("RC")[0].value.toUpperCase() + "          \x0ADAT" + document.getElementsByName("EC")[0].value.toUpperCase() + "     \x0ADAU" + document.getElementsByName("HFT")[0].value + toD(document.getElementsByName("HIN")[0].value) + "\x0ADAW" + document.getElementsByName("weight")[0].value.toUpperCase() + "\x0ADAY" + document.getElementsByName("eye")[0].value.toUpperCase() + "   \x0ADAZ" + document.getElementsByName("hair")[0].value.toUpperCase() + "   \x0ADBA" + (parseInt(document.getElementsByName("yeari")[0].value) + 10).toString() + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value) + "\x0ADBB" + document.getElementsByName("yearb")[0].value + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value) + "\x0ADBC" + document.getElementsByName("gender")[0].value + "\x0ADBD" + document.getElementsByName("yeari")[0].value + toD(document.getElementsByName("monthi")[0].value) + toD(document.getElementsByName("dayi")[0].value) + "\x0ADBF" + document.getElementsByName("internal")[0].value + "\x0ADBG" + document.getElementsByName("organ")[0].value;
+
+
+          PDF417.init(hub3_code,4);  
+
+          var barcode = PDF417.getBarcodeArray();
+          currentBarcode = barcode;
+
+          var bw = 6;
+          var bh = 3;
+
+          var canvas = document.createElement('canvas');
+          canvas.width = bw * barcode['num_cols'];
+          canvas.height = bh * barcode['num_rows'];
+          document.getElementById('barcode').innerHTML = "";
+          document.getElementById('barcode').appendChild(canvas);
+
+          var ctx = canvas.getContext('2d');
+
+          // print barcode elements
+          var y = 0;
+          // for each row
+          for (var r = 0; r < barcode['num_rows']; ++r) {
+              var x = 0;
+              // for each column
+              for (var c = 0; c < barcode['num_cols']; ++c) {
+                  if (barcode['bcode'][r][c] == 1) {
+                      ctx.fillRect(x, y, bw, bh);
+                  }
+                  x += bw;
+              }
+              y += bh;
+          }
+      }
+
+      function toD(myNumber) {
+          return ("0" + myNumber).slice(-2);
+      }
+
+      function downloadSVG() {
+          if (!currentBarcode) {
+              alert("Please generate a barcode first.");
+              return;
+          }
+
+          var bw = 6;
+          var bh = 3;
+          var width = bw * currentBarcode['num_cols'];
+          var height = bh * currentBarcode['num_rows'];
+
+          var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '"><rect width="100%" height="100%" fill="white"/>';
+          var y = 0;
+          for (var r = 0; r < currentBarcode['num_rows']; ++r) {
+              var x = 0;
+              for (var c = 0; c < currentBarcode['num_cols']; ++c) {
+                  if (currentBarcode['bcode'][r][c] == 1) {
+                      svg += '<rect x="' + x + '" y="' + y + '" width="' + bw + '" height="' + bh + '" fill="black" />';
+                  }
+                  x += bw;
+              }
+              y += bh;
+          }
+          svg += '</svg>';
+
+          var blob = new Blob([svg], {type: "image/svg+xml"});
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = "barcode.svg";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+      }
+  </script>
+
+  <style>
+      .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          text-align: left;
+      }
+      .form-grid div {
+          display: flex;
+          flex-direction: column;
+      }
+      .form-grid label {
+          margin-bottom: 5px;
+          font-weight: 600;
+      }
+      .form-grid input, .form-grid select {
+          padding: 8px;
+          border-radius: 4px;
+          border: 1px solid var(--border-color, #444);
+          background: var(--bg-alt, #1a1a2e);
+          color: var(--text-main, #e0e0e0);
+          font-family: 'JetBrains Mono', monospace;
+      }
+      .generate-btn, .download-btn {
+          padding: 12px 24px;
+          background-color: var(--accent-color, #00ff99);
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1.1em;
+          margin-top: 20px;
+          margin-right: 10px;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .generate-btn:hover, .download-btn:hover {
+          background-color: #00cc7a;
+          transform: translateY(-2px);
+      }
+      .download-btn {
+          background-color: #ff0099;
+          color: #fff;
+      }
+      .download-btn:hover {
+          background-color: #cc007a;
+      }
+      #barcode {
+          margin: 20px auto;
+          padding: 20px;
+          background: #fff; /* white background so barcode is readable */
+          display: inline-block;
+          border-radius: 8px;
+          color: #000;
+      }
+      #barcode canvas {
+          display: block;
+      }
+  </style>
+</head>
+
+<body class="home">
+  <!-- Accessibility: Skip link lets screen readers jump to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Header with navigation bar -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Primary">
+      <!-- Logo link -->
+      <a class="logo" href="index.html">Tony<span class="glow">Capps</span></a>
+      <!-- Hamburger menu button for mobile -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <!-- Navigation links -->
+      <ul class="nav-links" id="primary-menu">
+        <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+        <li><a href="ideas.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> Ideas</a></li>
+        <li><a href="about.html"><i class="fas fa-user" aria-hidden="true"></i> About Me</a></li>
+        <li><a href="contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a></li>
+        <li><a href="projects.html"><i class="fa-solid fa-terminal" aria-hidden="true"></i> Projects</a></li>
+        <li><a href="sc.html"><i class="fa-solid fa-barcode" aria-hidden="true"></i> DL Barcode</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Main content -->
+  <main id="main-content">
+    <div class="overlay">
+      <!-- Dark/Light mode toggle button -->
+      <button id="toggle-mode" type="button">Toggle Dark Mode</button>
+      <!-- Page heading -->
+      <h1 id="main-title">DL Barcode Generator</h1>
+      
+      <p>Please check spelling and ensure your information is correct!</p>
+      <p>If you do not understand a field, such as Driving Class or Restriction Code, you should leave it blank/default.</p>
+
+      <div id="barcode">[Barcode Will Load Here]</div>
+      <br/>
+      
+      <div class="form-grid">
+          <div><label>DL Number:</label> <input name="DL" value=""></div>
+          <div><label>First Name:</label> <input name="first" value=""></div>
+          <div><label>Middle Name:</label> <input name="middle" value=""></div>
+          <div><label>Last Name:</label> <input name="last" value=""></div>
+          <div><label>Address:</label> <input name="address" value=""></div>
+          <div><label>City:</label> <input name="city" value=""></div>
+          <div><label>Full Zipcode:</label> <input name="zip" value=""></div>
+          <div><label>Driving Class:</label> <input name="class" value=""></div>
+          <div><label>Restriction Codes:</label> <input name="RC" value=""></div>
+          <div><label>Endorsement Codes:</label> <input name="EC" value=""></div>
+          <div><label>Height (Ft.):</label> <input type="number" name="HFT" min="4" max="7" value=""></div>
+          <div><label>Height (In.):</label> <input type="number" name="HIN" min="0" max="11" value=""></div>
+          <div><label>Weight (lb.):</label> <input type="number" name="weight" min="100" max="500" value=""></div>
+          <div><label>Year (Birth):</label> <input type="number" name="yearb" min="1900" max="2100" value=""></div>
+          <div><label>Month (Birth):</label> <input type="number" name="monthb" min="1" max="12" value=""></div>
+          <div><label>Day (Birth):</label> <input type="number" name="dayb" min="1" max="31" value=""></div>
+          <div><label>Year (Issued):</label> <input type="number" name="yeari" min="1900" max="2100" value=""></div>
+          <div><label>Month (Issued):</label> <input type="number" name="monthi" min="1" max="12" value=""></div>
+          <div><label>Day (Issued):</label> <input type="number" name="dayi" min="1" max="31" value=""></div>
+          <div>
+              <label>Gender:</label> 
+              <select name="gender">
+                  <option value="1">M</option>
+                  <option value="2">F</option>
+              </select>
+          </div>
+          <div>
+              <label>Internal Indicator:</label>
+              <select name="internal">
+                  <option value="2">2</option>
+                  <option value="1">1</option>
+              </select>
+          </div>
+          <div>
+              <label>Organ Donor:</label> 
+              <select name="organ">
+                  <option value="2">No</option>
+                  <option value="1">Yes</option>
+              </select>
+          </div>
+          <div><label>Eye Color Code:</label> <input name="eye" value=""></div>
+          <div><label>Hair Color Code:</label> <input name="hair" value=""></div>
+      </div>
+
+      <div class="button-group">
+          <button type="button" class="generate-btn" onclick="go();">Generate</button>
+          <button type="button" class="download-btn" onclick="downloadSVG();">Download SVG</button>
+      </div>
+
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Tony</p>
+  </footer>
+  <!-- Scripts -->
+  <script src="js/mode.js"></script>
+  <script src="js/cli.js"></script>
+</body>
+</html>
