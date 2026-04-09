@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Generators UI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; background-color: #f8f9fa; }
+        .card { margin-bottom: 20px; }
+        .field-icons { position: relative; }
+        .calc-ok, .calc-err { display: none; }
+        .show { display: inline !important; }
+        .loading { opacity: 0.5; pointer-events: none; }
+        #barcodeContainer { text-align: center; margin-top: 20px; padding: 20px; background: white; border-radius: 8px; border: 1px solid #ddd; }
+        #barcodeCanvas { max-width: 100%; height: auto; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Generators UI</h1>
+        <p class="text-muted">A comprehensive interface to manually input info and generate a PDF417 barcode.</p>
+        
+        <div id="inputDataErrorAlertArea"></div>
+
+        <div class="row">
+            <!-- Left Column: Personal, Address & Physical -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">Personal Info & Address</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" id="inputFirstName" class="form-control" value="JOHN">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" id="inputMiddleName" class="form-control" value="DOE">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" id="inputLastName" class="form-control" value="SMITH">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" id="inputAddress" class="form-control" value="123 MAIN ST">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">City</label>
+                                <input type="text" id="inputCity" class="form-control" value="ANYTOWN">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Zip Code</label>
+                                <input type="text" id="inputZip" class="form-control" value="12345">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Sex</label>
+                                <select id="inputSex" class="form-select">
+                                    <option value="1">Male (M)</option>
+                                    <option value="2">Female (F)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Eye Color</label>
+                                <input type="text" id="inputEye" class="form-control" value="BRO">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Hair Color</label>
+                                <input type="text" id="inputHair" class="form-control" value="BLK">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Height</label>
+                                <div class="input-group">
+                                    <input type="number" id="inputHeightFt" class="form-control" placeholder="ft" min="0" max="8" value="5">
+                                    <input type="number" id="inputHeightIn" class="form-control" placeholder="in" min="0" max="11" value="10">
+                                </div>
+                                <input type="hidden" id="inputHeight" class="form-control" maxlength="3">
+                                <small id="cmDisplay" class="text-muted fw-bold">≈ ? cm</small>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Weight (lbs)</label>
+                                <input type="number" id="inputWeight" class="form-control" maxlength="3" value="160">
+                                <small id="kgDisplay" class="text-muted fw-bold">≈ ? kg</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">Dates</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Birth Date (MMDDYYYY or YYYYMMDD)</label>
+                            <input type="text" id="inputBrithDate" class="form-control" placeholder="MMDDYYYY" value="01011990">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Issue Date (MMDDYYYY or YYYYMMDD)</label>
+                            <input type="text" id="inputIssueDate" class="form-control" placeholder="MMDDYYYY" value="01012020">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Expiry Date (MMDDYYYY or YYYYMMDD)</label>
+                            <input type="text" id="inputExpiryDate" class="form-control" placeholder="MMDDYYYY" value="01012025">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Document Specifics -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">Document Specifics</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">State / Province</label>
+                            <div class="input-group">
+                                <select id="stateSelect" class="form-select">
+                                    <option value="AL">AL - Alabama</option>
+                                    <option value="AK">AK - Alaska</option>
+                                    <option value="AZ">AZ - Arizona</option>
+                                    <option value="AR">AR - Arkansas</option>
+                                    <option value="CA">CA - California</option>
+                                    <option value="CO">CO - Colorado</option>
+                                    <option value="CT">CT - Connecticut</option>
+                                    <option value="DE">DE - Delaware</option>
+                                    <option value="DC">DC - District of Columbia</option>
+                                    <option value="FL">FL - Florida</option>
+                                    <option value="GA">GA - Georgia</option>
+                                    <option value="HI">HI - Hawaii</option>
+                                    <option value="ID">ID - Idaho</option>
+                                    <option value="IL">IL - Illinois</option>
+                                    <option value="IN">IN - Indiana</option>
+                                    <option value="IA">IA - Iowa</option>
+                                    <option value="KS">KS - Kansas</option>
+                                    <option value="KY">KY - Kentucky</option>
+                                    <option value="LA">LA - Louisiana</option>
+                                    <option value="ME">ME - Maine</option>
+                                    <option value="MD">MD - Maryland</option>
+                                    <option value="MA">MA - Massachusetts</option>
+                                    <option value="MI">MI - Michigan</option>
+                                    <option value="MN">MN - Minnesota</option>
+                                    <option value="MS">MS - Mississippi</option>
+                                    <option value="MO">MO - Missouri</option>
+                                    <option value="MT">MT - Montana</option>
+                                    <option value="NE">NE - Nebraska</option>
+                                    <option value="NV">NV - Nevada</option>
+                                    <option value="NH">NH - New Hampshire</option>
+                                    <option value="NJ">NJ - New Jersey</option>
+                                    <option value="NM">NM - New Mexico</option>
+                                    <option value="NY">NY - New York</option>
+                                    <option value="NC">NC - North Carolina</option>
+                                    <option value="ND">ND - North Dakota</option>
+                                    <option value="OH">OH - Ohio</option>
+                                    <option value="OK">OK - Oklahoma</option>
+                                    <option value="OR">OR - Oregon</option>
+                                    <option value="PA">PA - Pennsylvania</option>
+                                    <option value="RI">RI - Rhode Island</option>
+                                    <option value="SC">SC - South Carolina</option>
+                                    <option value="SD">SD - South Dakota</option>
+                                    <option value="TN">TN - Tennessee</option>
+                                    <option value="TX">TX - Texas</option>
+                                    <option value="UT">UT - Utah</option>
+                                    <option value="VT">VT - Vermont</option>
+                                    <option value="VA">VA - Virginia</option>
+                                    <option value="WA">WA - Washington</option>
+                                    <option value="WV">WV - West Virginia</option>
+                                    <option value="WI">WI - Wisconsin</option>
+                                    <option value="WY">WY - Wyoming</option>
+                                </select>
+                                <button class="btn btn-success" type="button" onclick="generateStateData(this)">Auto-Fill State Fields</button>
+                            </div>
+                            <small class="text-muted">Calculates Document Number, ICN, DD based on State</small>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Document Number</label>
+                                <input type="text" id="inputDocumentNumber" class="form-control" value="D12345678">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Audit / Option</label>
+                                <input type="text" id="inputAudit" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ICN</label>
+                            <input type="text" id="inputICN" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DD</label>
+                            <input type="text" id="inputDD" class="form-control">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Driving Class</label>
+                                <input type="text" id="inputClass" class="form-control" value="C">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Restrictions</label>
+                                <input type="text" id="inputRC" class="form-control" value="NONE">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Endorsements</label>
+                                <input type="text" id="inputEC" class="form-control" value="NONE">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barcode Generation Section -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <button class="btn btn-dark btn-lg px-5 shadow" type="button" onclick="generateBarcode()">
+                    GENERATE PDF417 BARCODE
+                </button>
+                <button class="btn btn-outline-dark btn-lg ms-2 shadow" type="button" onclick="downloadBarcode()">
+                    Download SVG
+                </button>
+                <div id="barcodeContainer" class="shadow-sm">
+                    <canvas id="barcodeCanvas"></canvas>
+                    <div id="barcodePlaceholder" class="text-muted">Barcode will appear here...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bcmath-min.js" type="text/javascript"></script>
+    <script src="pdf417-min.js" type="text/javascript"></script>
+    <script src="generators.js"></script>
+    
+    <script>
+        var currentBarcode = null;
+
+        function generateStateData(btn) {
+            const state = document.getElementById('stateSelect').value;
+            const funcs = [
+                '_calculate_documentNumber', '_calculate_ICN', '_calculate_ICN_new', '_calculate_DD',
+                '_calculate_AUDIT', '_calculate_OfficeCode', '_calculate_optionNumber', '_calculate_REAL_ID',
+                '_2024_calculate_documentNumber', '_2024_calculate_ICN', '_2023_calculate_ICN', '_2023_calculate_DD',
+                '_2021_calculate_documentNumber', '_2021_calculate_ICN', '_2021_calculate_DD',
+                '_2020_calculate_documentNumber', '_2020_calculate_ICN', '_2020_calculate_DD',
+                '_2018_claculatee_ICN', '_2018_calculate_DD', '_2017_calculate_ICN', '_2017_calculate_DD',
+                '_2016_calculate_ICN', '_2016_calculate_REAL_ID', '_2015_calculate_ICN', '_2015_calculate_DD',
+                '_2012_calculate_documentNumber', '_2012_calculate_ICN', '_2012_calculate_DD',
+                '_2011_calculate_documentNumber', '_2011_calculate_ICN', '_2011_calculate_DD'
+            ];
+            
+            document.getElementById("inputDataErrorAlertArea").innerHTML = "";
+
+            funcs.forEach(suffix => {
+                const fnName = state + suffix;
+                if (typeof window[fnName] === 'function') {
+                    try {
+                        window[fnName](btn);
+                    } catch (e) {
+                        console.error("Error in " + fnName + ":", e);
+                    }
+                }
+            });
+        }
+        
+        if (typeof window.CalculateDL !== 'function') {
+            window.CalculateDL = function(last, middle, first, dob, state) {
+                return state + "-" + (last ? last.charAt(0).toUpperCase() : 'X') + (first ? first.charAt(0).toUpperCase() : 'X') + "-" + dob;
+            }
+        }
+        
+        function updateHeight() {
+            const ftInput = document.getElementById('inputHeightFt');
+            const inInput = document.getElementById('inputHeightIn');
+            const heightInput = document.getElementById('inputHeight');
+            const ft = parseInt(ftInput.value) || 0;
+            const ins = parseInt(inInput.value) || 0;
+            const totalInches = (ft * 12) + ins;
+            
+            if (ftInput.value || inInput.value) {
+                heightInput.value = totalInches;
+            } else {
+                heightInput.value = "";
+            }
+            heightInput.dispatchEvent(new Event('input'));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const ftInput = document.getElementById('inputHeightFt');
+            const inInput = document.getElementById('inputHeightIn');
+            if (ftInput && inInput) {
+                ftInput.addEventListener('input', updateHeight);
+                inInput.addEventListener('input', updateHeight);
+                updateHeight();
+            }
+        });
+
+        function toD(myNumber) {
+            return ("0" + (myNumber || "0")).slice(-2);
+        }
+
+        function padOrTrim(str, length, padChar) {
+            str = (str || "").toString();
+            if (str.length > length) return str.substring(0, length);
+            while (str.length < length) str += (padChar || " ");
+            return str;
+        }
+
+        function generateBarcode() {
+            try {
+                if (typeof PDF417 === 'undefined') {
+                    alert("PDF417 Library not found. Ensure pdf417-min.js is loaded.");
+                    return;
+                }
+
+                // Gather inputs
+                const state = document.getElementById("stateSelect").value;
+                const dl = document.getElementById("inputDocumentNumber").value.toUpperCase();
+                const last = document.getElementById("inputLastName").value.toUpperCase();
+                const first = document.getElementById("inputFirstName").value.toUpperCase();
+                const middle = document.getElementById("inputMiddleName").value.toUpperCase();
+                const address = document.getElementById("inputAddress").value.toUpperCase();
+                const city = document.getElementById("inputCity").value.toUpperCase();
+                const zip = document.getElementById("inputZip").value.toUpperCase();
+                
+                const dClass = document.getElementById("inputClass").value.toUpperCase();
+                const rc = document.getElementById("inputRC").value.toUpperCase();
+                const ec = document.getElementById("inputEC").value.toUpperCase();
+                
+                const hFt = document.getElementById("inputHeightFt").value || "0";
+                const hIn = document.getElementById("inputHeightIn").value || "0";
+                const weight = ("000" + (document.getElementById("inputWeight").value || "0")).slice(-3);
+                
+                const eye = document.getElementById("inputEye").value.toUpperCase();
+                const hair = document.getElementById("inputHair").value.toUpperCase();
+                const sex = document.getElementById("inputSex").value;
+
+                // Dates handling (strip non-numeric)
+                let dob = document.getElementById("inputBrithDate").value.replace(/[^0-9]/g, '');
+                let doi = document.getElementById("inputIssueDate").value.replace(/[^0-9]/g, '');
+                let doe = document.getElementById("inputExpiryDate").value.replace(/[^0-9]/g, '');
+                
+                // Fallback to exactly 8 digits if possible
+                dob = padOrTrim(dob, 8, '0');
+                doi = padOrTrim(doi, 8, '0');
+                doe = padOrTrim(doe, 8, '0');
+                
+                const dd = document.getElementById("inputDD").value.toUpperCase();
+                const icn = document.getElementById("inputICN").value.toUpperCase();
+                
+                const audit = document.getElementById("inputAudit").value.toUpperCase();
+                const totalHeightInches = ("000" + ((parseInt(hFt) * 12) + parseInt(hIn))).slice(-3) + " in";
+                const cleanZip = zip.replace(/[^A-Z0-9]/ig, '');
+
+                // Build AAMVA string (custom format based on user request)
+                var hub3_code = "@\x0A\x1C\x0DANSI 636045090001DL00310278DL";
+                hub3_code += "DCA" + (dClass || "NONE") + "\x0A";
+                hub3_code += "DCB" + (rc || "NONE") + "\x0A";
+                hub3_code += "DCD" + (ec || "NONE") + "\x0A";
+                hub3_code += "DBA" + doe + "\x0A";
+                hub3_code += "DCS" + last + "\x0A";
+                hub3_code += "DAC" + first + "\x0A";
+                hub3_code += "DAD" + middle + "\x0A";
+                hub3_code += "DBD" + doi + "\x0A";
+                hub3_code += "DBB" + dob + "\x0A";
+                hub3_code += "DBC" + sex + "\x0A";
+                hub3_code += "DAY" + eye + "\x0A";
+                hub3_code += "DAU" + totalHeightInches + "\x0A";
+                hub3_code += "DAG" + address + "\x0A";
+                hub3_code += "DAI" + city + "\x0A";
+                hub3_code += "DAJ" + state + "\x0A";
+                hub3_code += "DAK" + cleanZip + "  \x0A";
+                hub3_code += "DAQ" + dl + "\x0A";
+                
+                if (icn) hub3_code += "DCF" + icn + "\x0A";
+                else if (dd) hub3_code += "DCF" + dd + "\x0A";
+                else hub3_code += "DCF\x0A";
+                
+                hub3_code += "DCGUSA\x0A";
+                hub3_code += "DDEN\x0A";
+                hub3_code += "DDFN\x0A";
+                hub3_code += "DDGN\x0A";
+                if (audit) hub3_code += "DCJ" + audit + "\x0A";
+                hub3_code += "DDAN\x0A";
+                hub3_code += "DDB11122019\x0A";
+                hub3_code += "DAW" + weight + "\x0A";
+                hub3_code += "DDK1\x0A";
+
+                PDF417.init(hub3_code, 4);  
+                currentBarcode = PDF417.getBarcodeArray();
+
+                var bw = 4;
+                var bh = 2;
+
+                var canvas = document.getElementById('barcodeCanvas');
+                canvas.width = bw * currentBarcode['num_cols'];
+                canvas.height = bh * currentBarcode['num_rows'];
+                
+                document.getElementById('barcodePlaceholder').style.display = 'none';
+
+                var ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#000';
+
+                var y = 0;
+                for (var r = 0; r < currentBarcode['num_rows']; ++r) {
+                    var x = 0;
+                    for (var c = 0; c < currentBarcode['num_cols']; ++c) {
+                        if (currentBarcode['bcode'][r][c] == 1) {
+                            ctx.fillRect(x, y, bw, bh);
+                        }
+                        x += bw;
+                    }
+                    y += bh;
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Failed to generate barcode. Check console for details.");
+            }
+        }
+
+        function downloadBarcode() {
+            if (!currentBarcode) {
+                alert("Please generate a barcode first.");
+                return;
+            }
+
+            var bw = 6;
+            var bh = 3;
+            var width = bw * currentBarcode['num_cols'];
+            var height = bh * currentBarcode['num_rows'];
+
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '"><rect width="100%" height="100%" fill="white"/>';
+            var y = 0;
+            for (var r = 0; r < currentBarcode['num_rows']; ++r) {
+                var x = 0;
+                for (var c = 0; c < currentBarcode['num_cols']; ++c) {
+                    if (currentBarcode['bcode'][r][c] == 1) {
+                        svg += '<rect x="' + x + '" y="' + y + '" width="' + bw + '" height="' + bh + '" fill="black" />';
+                    }
+                    x += bw;
+                }
+                y += bh;
+            }
+            svg += '</svg>';
+
+            var blob = new Blob([svg], {type: "image/svg+xml"});
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = "barcode.svg";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

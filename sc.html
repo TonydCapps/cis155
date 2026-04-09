@@ -18,7 +18,56 @@
       var currentBarcode = null;
 
       function go() {
-          var hub3_code = "@\x0A\x1C\x0DANSI 6360050101DL00300203DLDAQ" + document.getElementsByName("DL")[0].value + "\x0ADAA" + document.getElementsByName("last")[0].value.toUpperCase() + "," + document.getElementsByName("first")[0].value.toUpperCase() + "," + document.getElementsByName("middle")[0].value.toUpperCase() + ",\x0ADAG" + document.getElementsByName("address")[0].value.toUpperCase() + "\x0ADAI" + document.getElementsByName("city")[0].value.toUpperCase() + "\x0ADAJSC\x0ADAK" + document.getElementsByName("zip")[0].value.toUpperCase() + "  \x0ADAR" + document.getElementsByName("class")[0].value.toUpperCase() + "   \x0ADAS" + document.getElementsByName("RC")[0].value.toUpperCase() + "          \x0ADAT" + document.getElementsByName("EC")[0].value.toUpperCase() + "     \x0ADAU" + document.getElementsByName("HFT")[0].value + toD(document.getElementsByName("HIN")[0].value) + "\x0ADAW" + document.getElementsByName("weight")[0].value.toUpperCase() + "\x0ADAY" + document.getElementsByName("eye")[0].value.toUpperCase() + "   \x0ADAZ" + document.getElementsByName("hair")[0].value.toUpperCase() + "   \x0ADBA" + (parseInt(document.getElementsByName("yeari")[0].value) + 10).toString() + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value) + "\x0ADBB" + document.getElementsByName("yearb")[0].value + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value) + "\x0ADBC" + document.getElementsByName("gender")[0].value + "\x0ADBD" + document.getElementsByName("yeari")[0].value + toD(document.getElementsByName("monthi")[0].value) + toD(document.getElementsByName("dayi")[0].value) + "\x0ADBF" + document.getElementsByName("internal")[0].value + "\x0ADBG" + document.getElementsByName("organ")[0].value;
+          var dClass = document.getElementsByName("class")[0].value.toUpperCase() || "NONE";
+          var rc = document.getElementsByName("RC")[0].value.toUpperCase() || "NONE";
+          var ec = document.getElementsByName("EC")[0].value.toUpperCase() || "NONE";
+          var last = document.getElementsByName("last")[0].value.toUpperCase();
+          var first = document.getElementsByName("first")[0].value.toUpperCase();
+          var middle = document.getElementsByName("middle")[0].value.toUpperCase();
+          var dl = document.getElementsByName("DL")[0].value.toUpperCase();
+          var address = document.getElementsByName("address")[0].value.toUpperCase();
+          var city = document.getElementsByName("city")[0].value.toUpperCase();
+          var zip = document.getElementsByName("zip")[0].value.toUpperCase().replace(/[^A-Z0-9]/ig, '');
+          var hFt = document.getElementsByName("HFT")[0].value || "0";
+          var hIn = document.getElementsByName("HIN")[0].value || "0";
+          var weight = ("000" + (document.getElementsByName("weight")[0].value || "0")).slice(-3);
+          var eye = document.getElementsByName("eye")[0].value.toUpperCase();
+          var sex = document.getElementsByName("gender")[0].value;
+          
+          var dob = document.getElementsByName("yearb")[0].value + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value);
+          var doi = document.getElementsByName("yeari")[0].value + toD(document.getElementsByName("monthi")[0].value) + toD(document.getElementsByName("dayi")[0].value);
+          var doe = (parseInt(document.getElementsByName("yeari")[0].value) + 10).toString() + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value);
+          
+          var totalHeightInches = ("000" + ((parseInt(hFt) * 12) + parseInt(hIn))).slice(-3) + " in";
+
+          var hub3_code = "@\x0A\x1C\x0DANSI 636045090001DL00310278DL";
+          hub3_code += "DCA" + dClass + "\x0A";
+          hub3_code += "DCB" + rc + "\x0A";
+          hub3_code += "DCD" + ec + "\x0A";
+          hub3_code += "DBA" + doe + "\x0A";
+          hub3_code += "DCS" + last + "\x0A";
+          hub3_code += "DAC" + first + "\x0A";
+          hub3_code += "DAD" + middle + "\x0A";
+          hub3_code += "DBD" + doi + "\x0A";
+          hub3_code += "DBB" + dob + "\x0A";
+          hub3_code += "DBC" + sex + "\x0A";
+          hub3_code += "DAY" + eye + "\x0A";
+          hub3_code += "DAU" + totalHeightInches + "\x0A";
+          hub3_code += "DAG" + address + "\x0A";
+          hub3_code += "DAI" + city + "\x0A";
+          hub3_code += "DAJWA\x0A";
+          hub3_code += "DAK" + zip + "  \x0A";
+          hub3_code += "DAQ" + dl + "\x0A";
+          hub3_code += "DCF\x0A"; // Placeholder, requires DD in UI
+          hub3_code += "DCGUSA\x0A";
+          hub3_code += "DDEN\x0A";
+          hub3_code += "DDFN\x0A";
+          hub3_code += "DDGN\x0A";
+          hub3_code += "DCJ\x0A"; // Placeholder, requires Audit in UI
+          hub3_code += "DDAN\x0A";
+          hub3_code += "DDB11122019\x0A";
+          hub3_code += "DAW" + weight + "\x0A";
+          hub3_code += "DDK1\x0A";
 
 
           PDF417.init(hub3_code,4);  
