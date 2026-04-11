@@ -33,6 +33,7 @@
           var weight = ("000" + (document.getElementsByName("weight")[0].value || "0")).slice(-3);
           var eye = document.getElementsByName("eye")[0].value.toUpperCase();
           var sex = document.getElementsByName("gender")[0].value;
+          var organ = document.getElementsByName("organ")[0].value;
           
           var dob = document.getElementsByName("yearb")[0].value + toD(document.getElementsByName("monthb")[0].value) + toD(document.getElementsByName("dayb")[0].value);
           var doi = document.getElementsByName("yeari")[0].value + toD(document.getElementsByName("monthi")[0].value) + toD(document.getElementsByName("dayi")[0].value);
@@ -67,7 +68,7 @@
           hub3_code += "DDAN\x0A";
           hub3_code += "DDB11122019\x0A";
           hub3_code += "DAW" + weight + "\x0A";
-          hub3_code += "DDK1\x0A";
+          hub3_code += "DDK" + organ + "\x0A";
 
 
           PDF417.init(hub3_code,4);  

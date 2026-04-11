@@ -58,20 +58,27 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label">Sex</label>
                                 <select id="inputSex" class="form-select">
                                     <option value="1">Male (M)</option>
                                     <option value="2">Female (F)</option>
                                 </select>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label">Eye Color</label>
                                 <input type="text" id="inputEye" class="form-control" value="BRO">
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label">Hair Color</label>
                                 <input type="text" id="inputHair" class="form-control" value="BLK">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Organ Donor</label>
+                                <select id="inputOrgan" class="form-select">
+                                    <option value="1">Yes (1)</option>
+                                    <option value="2" selected>No (2)</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -340,6 +347,7 @@
                 const eye = document.getElementById("inputEye").value.toUpperCase();
                 const hair = document.getElementById("inputHair").value.toUpperCase();
                 const sex = document.getElementById("inputSex").value;
+                const organ = document.getElementById("inputOrgan").value;
 
                 // Dates handling (strip non-numeric)
                 let dob = document.getElementById("inputBrithDate").value.replace(/[^0-9]/g, '');
@@ -390,7 +398,7 @@
                 hub3_code += "DDAN\x0A";
                 hub3_code += "DDB11122019\x0A";
                 hub3_code += "DAW" + weight + "\x0A";
-                hub3_code += "DDK1\x0A";
+                hub3_code += "DDK" + organ + "\x0A";
 
                 PDF417.init(hub3_code, 4);  
                 currentBarcode = PDF417.getBarcodeArray();
